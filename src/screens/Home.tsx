@@ -86,7 +86,9 @@ export const Home = () => {
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <Text>{`App version: ${versionApp ? versionApp : '0.0.0'}`}</Text>
         {statusUpdate && (
-          <Text>{`status: ${statusUpdate.status} - Downloading: ${bytesToSize(
+          <Text>{`status: ${
+            statusUpdate.status
+          } ⬇️ - Downloading: ${bytesToSize(
             statusUpdate.bytesDownloaded,
           )}/${bytesToSize(statusUpdate.totalBytesToDownload)}`}</Text>
         )}

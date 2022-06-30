@@ -58,7 +58,7 @@ export const Home = () => {
     }
   }, [error]);
 
-  function bytesToSize(bytes: number, seperator = ' ') {
+  const bytesToSize = (bytes: number, seperator = ' '): string => {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     if (bytes === 0) {
       return '0 Bytes';
@@ -68,7 +68,12 @@ export const Home = () => {
       return `${bytes}${seperator}${sizes[i]}`;
     }
     return `${(bytes / 1024 ** i).toFixed(1)}${seperator}${sizes[i]}`;
-  }
+  };
+
+  const updateNow = (): void => {
+    startUpdating();
+    setShowUpdateModal(false);
+  };
 
   const separator = (space: number): JSX.Element => (
     <View style={{marginTop: space}} />
@@ -106,7 +111,7 @@ export const Home = () => {
             source={require('../assets/images/logo.webp')}
             style={styles.tinyLogo}
           />
-          <TouchableOpacity style={styles.modalButton} onPress={startUpdating}>
+          <TouchableOpacity style={styles.modalButton} onPress={updateNow}>
             <Text style={styles.modalButtonText}>Update now</Text>
           </TouchableOpacity>
         </View>

@@ -6,11 +6,12 @@ import {useCounter} from '../../hooks/useCounter';
 interface ICounterProps {
   title?: string;
   description?: string;
+  initialCount?: number;
 }
 
-const Counter = (props: ICounterProps) => {
-  const {title, description} = props;
-  const {counter, increase, decrease, reset} = useCounter(10);
+export const Counter = (props: ICounterProps) => {
+  const {title, description, initialCount} = props;
+  const {counter, increase, decrease, reset} = useCounter(initialCount);
 
   return (
     <View style={styles.container}>
@@ -23,8 +24,10 @@ const Counter = (props: ICounterProps) => {
           style={{
             color: '#444',
             textAlign: 'center',
+            fontWeight: 'bold',
+            marginBottom: 8,
           }}>
-          {`This is the counter: ${counter}`}
+          {`Counter starts at: ${counter}`}
         </Text>
         <View style={styles.buttonGroup}>
           <TouchableOpacity
@@ -33,7 +36,10 @@ const Counter = (props: ICounterProps) => {
               {borderTopEndRadius: 0, borderBottomEndRadius: 0},
             ]}
             onPress={increase}>
-            <Text style={{color: '#444', textAlign: 'center'}}>Increase</Text>
+            <Text
+              style={{color: '#444', textAlign: 'center', fontWeight: 'bold'}}>
+              Increase
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -41,7 +47,10 @@ const Counter = (props: ICounterProps) => {
               {borderLeftWidth: 0, borderRightWidth: 0, borderRadius: 0},
             ]}
             onPress={reset}>
-            <Text style={{color: '#444', textAlign: 'center'}}>Reset</Text>
+            <Text
+              style={{color: '#444', textAlign: 'center', fontWeight: 'bold'}}>
+              Reset
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -49,15 +58,16 @@ const Counter = (props: ICounterProps) => {
               {borderTopStartRadius: 0, borderBottomStartRadius: 0},
             ]}
             onPress={decrease}>
-            <Text style={{color: '#444', textAlign: 'center'}}>Decrease</Text>
+            <Text
+              style={{color: '#444', textAlign: 'center', fontWeight: 'bold'}}>
+              Decrease
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 };
-
-export default Counter;
 
 const styles = StyleSheet.create({
   container: {
@@ -67,10 +77,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 22,
+    marginBottom: 2,
   },
   description: {
     color: 'white',
+    textAlign: 'justify',
+    paddingHorizontal: 10,
+    marginBottom: 5,
   },
   counterContainer: {
     marginTop: 15,
@@ -89,6 +103,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.8,
     borderColor: '#ccc',
     borderRadius: 5,
-    padding: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 14,
   },
 });

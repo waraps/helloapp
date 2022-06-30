@@ -27,7 +27,7 @@ export const HelloComponent = () => {
             onPress={() => setVisible(false)}>
             <Text style={styles.buttonTextModal}>X</Text>
           </TouchableOpacity>
-          <Text style={styles.contentTitle}>Hi dear user 👋!</Text>
+          <Text style={styles.contentTitle}>Hi dear user 👋😁!</Text>
           <Text style={styles.contentDescription}>
             {
               'The purpose of this app is to test automatic updates (In app updates)'

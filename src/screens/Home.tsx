@@ -15,6 +15,7 @@ import {
 import {getVersion} from 'react-native-device-info';
 import {IAUInstallStatus} from 'sp-react-native-in-app-updates';
 import Modal from 'react-native-modal';
+import SplashScreen from 'react-native-splash-screen';
 
 // components
 import {HeaderComponent} from '../components/Header/header-component';
@@ -34,6 +35,7 @@ export const Home = () => {
     'This is a simple counter 🙂 press the buttons "Increase, Decrease and Reset" to increment, decrement and reset the count.';
 
   useEffect(() => {
+    SplashScreen.hide();
     checkForUpdates();
   }, []);
 

@@ -23,4 +23,5 @@ yarn android
 
 ## Examples
 
-![Example 1](https://raw.githubusercontent.com/waraps/HelloApp/branch/src/assets/images/example_1.gif)
+![Example 1](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/example_1.gif)
+![Example 2](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/example_2.gif)

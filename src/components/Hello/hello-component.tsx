@@ -15,7 +15,7 @@ export const HelloComponent = (): JSX.Element => {
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <TouchableOpacity style={styles.button} onPress={() => setVisible(true)}>
-        <Text style={styles.buttonText}>Greetings</Text>
+        <Text style={styles.buttonText}>Greetings 👋</Text>
       </TouchableOpacity>
       <Modal
         isVisible={visible}

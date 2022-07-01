@@ -1,2 +1,26 @@
-# helloapp
-Working with In App Updates feature (react native simple app)
+# Hello Waraps App 👋
+
+**Hello Waraps App** is a simple app developed using react native mobile framework. its purpose is to test the "sp-react-native-in-app-updates" library and test its functionality on android
+
+## Installation
+
+Use the package manager [yarn](https://pip.pypa.io/en/stable/) or [npm](#) to install.
+
+```bash
+yarn install
+```
+
+## Run on device
+
+### First run
+```bash
+yarn start
+``` 
+### and then
+```bash
+yarn android
+```
+
+## Examples
+
+![Example 1](https://raw.githubusercontent.com/waraps/HelloApp/branch/src/assets/images/example_1.gif)

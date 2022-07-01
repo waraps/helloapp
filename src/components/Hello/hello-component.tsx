@@ -1,9 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+// libs
 import Modal from 'react-native-modal';
 
-export const HelloComponent = () => {
+export const HelloComponent = (): JSX.Element => {
   const [visible, setVisible] = useState<boolean>(false);
   const title = 'Greetings';
   const description =
@@ -27,7 +28,7 @@ export const HelloComponent = () => {
             onPress={() => setVisible(false)}>
             <Text style={styles.buttonTextModal}>X</Text>
           </TouchableOpacity>
-          <Text style={styles.contentTitle}>Hi dear user 👋😁!</Text>
+          <Text style={styles.contentTitle}>Hi, Dear user 👋😁!</Text>
           <Text style={styles.contentDescription}>
             {
               'The purpose of this app is to test automatic updates (In app updates)'

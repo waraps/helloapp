@@ -1,14 +1,14 @@
-import {useState} from 'react';
-import {Platform} from 'react-native';
-// import {getVersion} from 'react-native-device-info';
+/* eslint-disable react-hooks/exhaustive-deps */
+import {useEffect, useState} from 'react';
+import {Alert, Platform} from 'react-native';
+
 import SpInAppUpdates, {
   NeedsUpdateResponse,
   IAUUpdateKind,
   StartUpdateOptions,
   StatusUpdateEvent,
+  IAUInstallStatus,
 } from 'sp-react-native-in-app-updates';
-
-const HIGH_PRIORITY_UPDATE = 5; // Arbitrary, depends on how you handle priority in the Play Console
 
 interface IAppState {
   needsUpdate: boolean | null;
@@ -19,14 +19,14 @@ interface IAppState {
 
 interface IAppUpdateState {
   state: IAppState;
-  checkForUpdates: () => void;
+  checkForUpdates?: () => void;
   startUpdating: () => void;
-  doInstallUpdate: () => void;
 }
 
+const HIGH_PRIORITY_UPDATE = 5; // Arbitrary, depends on how you handle priority in the Play Console
+
 export function useInAppUpdate(): IAppUpdateState {
-  // const curVersion = getVersion();
-  let inAppUpdates = new SpInAppUpdates(true);
+  const inAppUpdates = new SpInAppUpdates(true);
 
   const [state, setState] = useState<IAppState>({
     needsUpdate: null,
@@ -37,18 +37,7 @@ export function useInAppUpdate(): IAppUpdateState {
 
   const checkForUpdates = (): void => {
     inAppUpdates
-      .checkNeedsUpdate({
-        curVersion: '0.0.8',
-        // toSemverConverter: (ver: SemverVersion) => {
-        //   // i.e if 400401 is the Android version, and we want to convert it to 4.4.1
-        //   const androidVersionNo = parseInt(ver, 10);
-        //   const majorVer = Math.trunc(androidVersionNo / 10000);
-        //   const minorVerStarter = androidVersionNo - majorVer * 10000;
-        //   const minorVer = Math.trunc(minorVerStarter / 100);
-        //   const patchVersion = Math.trunc(minorVerStarter - minorVer * 100);
-        //   return `${majorVer}.${minorVer}.${patchVersion}`;
-        // },
-      })
+      .checkNeedsUpdate()
       .then((result: NeedsUpdateResponse) => {
         console.log(result);
         setState({
@@ -66,17 +55,7 @@ export function useInAppUpdate(): IAppUpdateState {
   };
 
   const onStatusUpdate = (event: StatusUpdateEvent) => {
-    // const {
-    //   // status,
-    //   bytesDownloaded,
-    //   totalBytesToDownload,
-    // } = status;
-    // do something
-    setState({
-      ...state,
-      statusUpdate: event,
-    });
-    console.log(`@@ ${JSON.stringify(event)}`);
+    setState({...state, statusUpdate: event});
   };
 
   const startUpdating = (): void => {
@@ -100,9 +79,7 @@ export function useInAppUpdate(): IAppUpdateState {
       inAppUpdates.addStatusUpdateListener(onStatusUpdate);
       inAppUpdates.startUpdate(updateOptions);
     } else {
-      // @ts-ignore
-      // eslint-disable-next-line no-alert
-      alert('doesnt look like we need an update');
+      Alert.alert('Hey ', 'doesnt look like we need an update');
     }
   };
 
@@ -110,10 +87,24 @@ export function useInAppUpdate(): IAppUpdateState {
     inAppUpdates.installUpdate();
   };
 
-  return {
-    state,
-    checkForUpdates,
-    startUpdating,
-    doInstallUpdate,
-  };
+  useEffect(() => {
+    checkForUpdates();
+  }, []);
+
+  useEffect(() => {
+    if (state.statusUpdate?.status === IAUInstallStatus.DOWNLOADED) {
+      doInstallUpdate();
+    }
+  }, [state.statusUpdate?.status]);
+
+  useEffect(() => {
+    if (state.statusUpdate?.status === IAUInstallStatus.FAILED) {
+      Alert.alert(
+        `[FAILED]code: ${IAUInstallStatus.FAILED}`,
+        `Error: ${state.error}`,
+      );
+    }
+  }, [state.error]);
+
+  return {state, checkForUpdates, startUpdating};
 }

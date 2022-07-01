@@ -1,7 +1,7 @@
 import React from 'react';
 import {Home} from './src/screens/Home';
 
-const App = () => {
+const App = (): JSX.Element => {
   return <Home />;
 };
 

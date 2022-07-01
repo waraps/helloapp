@@ -1,15 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {useCounter} from '../../hooks/useCounter';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-interface ICounterProps {
+// hooks
+import {useCounter} from '../../hooks';
+
+interface ICounterComponentProps {
   title?: string;
   description?: string;
   initialCount?: number;
 }
 
-export const Counter = (props: ICounterProps) => {
+export const CounterComponent = (
+  props: ICounterComponentProps,
+): JSX.Element => {
   const {title, description, initialCount} = props;
   const {counter, increase, decrease, reset} = useCounter(initialCount);
 

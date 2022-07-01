@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, ImageBackground, Text, View} from 'react-native';
 
-export const HeaderComponent = () => {
+export const HeaderComponent = (): JSX.Element => {
   return (
     <ImageBackground
       source={require('../../assets/images/rocket.webp')}

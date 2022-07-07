@@ -1,10 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 
 // libs
 import {getVersion} from 'react-native-device-info';
 import SplashScreen from 'react-native-splash-screen';
+import {StackNavigatorParamList} from '../../../App';
 
 // components
 import {
@@ -13,12 +15,16 @@ import {
   HelloComponent,
   ModalUpdateComponent,
   SeparatorComponent,
-} from '../components';
+} from '../../components';
 
 // hooks
-import {useInAppUpdate} from '../hooks';
+import {useInAppUpdate} from '../../hooks';
 
-export const Home = (): JSX.Element => {
+interface IHomeProps {
+  navigation: NativeStackNavigationProp<StackNavigatorParamList>;
+}
+
+export const Home = ({navigation}: IHomeProps): JSX.Element => {
   const [showUpdateModal, setShowUpdateModal] = useState<boolean>(false);
   const {state, checkForUpdates, startUpdating} = useInAppUpdate();
 
@@ -56,7 +62,7 @@ export const Home = (): JSX.Element => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{backgroundColor: '#333', flexGrow: 1}}>
       <HeaderComponent />
       <SeparatorComponent />
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -83,6 +89,17 @@ export const Home = (): JSX.Element => {
         showUpdateModal={showUpdateModal}
         updateNow={updateNow}
       />
+      <SeparatorComponent space={30} />
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => navigation.navigate('List')}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{textDecorationLine: 'underline', marginRight: 3}}>
+              Go to FlashList
+            </Text>
+            <Text>➡</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };

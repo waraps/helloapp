@@ -23,8 +23,6 @@ interface IAppUpdateState {
   startUpdating: () => void;
 }
 
-const HIGH_PRIORITY_UPDATE = 5; // Arbitrary, depends on how you handle priority in the Play Console
-
 export function useInAppUpdate(): IAppUpdateState {
   const inAppUpdates = new SpInAppUpdates(true);
 
@@ -62,19 +60,9 @@ export function useInAppUpdate(): IAppUpdateState {
     if (state.needsUpdate) {
       let updateOptions: StartUpdateOptions = {};
       if (Platform.OS === 'android' && state.otherData) {
-        const {otherData} = state || {
-          otherData: null,
+        updateOptions = {
+          updateType: IAUUpdateKind.IMMEDIATE,
         };
-        // @ts-expect-error TODO: Check if updatePriority exists
-        if (otherData?.updatePriority >= HIGH_PRIORITY_UPDATE) {
-          updateOptions = {
-            updateType: IAUUpdateKind.IMMEDIATE,
-          };
-        } else {
-          updateOptions = {
-            updateType: IAUUpdateKind.FLEXIBLE,
-          };
-        }
       }
       inAppUpdates.addStatusUpdateListener(onStatusUpdate);
       inAppUpdates.startUpdate(updateOptions);

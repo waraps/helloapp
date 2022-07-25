@@ -1,6 +1,12 @@
 # Hello Waraps App 👋
 
-**Hello Waraps App** is a simple app developed using react native mobile framework. its purpose is to test the "sp-react-native-in-app-updates" library and test its functionality on android
+**Hello Waraps App** is a simple app developed using react native mobile framework. its purpose is to test the "[sp-react-native-in-app-updates](https://github.com/SudoPlz/sp-react-native-in-app-updates)" library and test its functionality on android
+
+**Others tested libraries in this app:**
+
+* [@shopify/flash-list](https://shopify.github.io/flash-list/docs/)
+* [react-native-splash-screen](https://github.com/crazycodeboy/react-native-splash-screen)
+* [react-native-fast-image](https://github.com/DylanVann/react-native-fast-image)
 
 ## Installation
 

@@ -100,6 +100,17 @@ export const Home = ({navigation}: IHomeProps): JSX.Element => {
           </View>
         </TouchableOpacity>
       </View>
+      <SeparatorComponent space={15} />
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Libraries')}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{textDecorationLine: 'underline', marginRight: 3}}>
+              What libraries do I use?
+            </Text>
+            <Text>➡</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };

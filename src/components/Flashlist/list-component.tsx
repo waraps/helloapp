@@ -5,6 +5,7 @@ import {View, Text, TouchableOpacity, RefreshControl} from 'react-native';
 
 // components
 import {FlashList, ListRenderItemInfo} from '@shopify/flash-list';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {SeparatorComponent} from '../Separator';
 import {AvatarComponent} from '../Avatar';
 
@@ -59,6 +60,7 @@ export const ListComponent = ({data}: IListComponentProp) => {
         </View>
         <AvatarComponent
           uri={'https://cdn-icons-png.flaticon.com/512/7285/7285377.png'}
+          size={wp('10%')}
         />
       </TouchableOpacity>
     );
@@ -81,7 +83,7 @@ export const ListComponent = ({data}: IListComponentProp) => {
             {item.date} - {item.day}
           </Text>
         </View>
-        <AvatarComponent />
+        <AvatarComponent size={wp('15%')} />
       </TouchableOpacity>
     );
   };

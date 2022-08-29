@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View, Button} from 'react-native';
 
 // libs
 import {getVersion} from 'react-native-device-info';
@@ -18,7 +18,7 @@ import {
 } from '../../components';
 
 // hooks
-import {useInAppUpdate} from '../../hooks';
+import {useInAppUpdate, useInAppReview} from '../../hooks';
 
 interface IHomeProps {
   navigation: NativeStackNavigationProp<StackNavigatorParamList>;
@@ -27,6 +27,7 @@ interface IHomeProps {
 export const Home = ({navigation}: IHomeProps): JSX.Element => {
   const [showUpdateModal, setShowUpdateModal] = useState<boolean>(false);
   const {state, checkForUpdates, startUpdating} = useInAppUpdate();
+  const {onRate, rated, onReview} = useInAppReview(true); // true to run onRate or false to run onReview
 
   const {needsUpdate, statusUpdate} = state;
   const versionApp = getVersion();
@@ -67,7 +68,9 @@ export const Home = ({navigation}: IHomeProps): JSX.Element => {
       <SeparatorComponent />
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity onPress={checkForUpdates}>
-          <Text>{`App version: ${versionApp ? versionApp : '0.0.0'}`}</Text>
+          <Text style={{color: 'white'}}>
+            {`App version: ${versionApp ? versionApp : '0.0.0'}`}
+          </Text>
         </TouchableOpacity>
         {statusUpdate && (
           <Text>{`status: ${
@@ -93,7 +96,12 @@ export const Home = ({navigation}: IHomeProps): JSX.Element => {
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity onPress={() => navigation.navigate('List')}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{textDecorationLine: 'underline', marginRight: 3}}>
+            <Text
+              style={{
+                textDecorationLine: 'underline',
+                marginRight: 3,
+                color: 'white',
+              }}>
               Go to FlashList
             </Text>
             <Text>➡</Text>
@@ -104,12 +112,23 @@ export const Home = ({navigation}: IHomeProps): JSX.Element => {
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <TouchableOpacity onPress={() => navigation.navigate('Libraries')}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{textDecorationLine: 'underline', marginRight: 3}}>
+            <Text
+              style={{
+                textDecorationLine: 'underline',
+                marginRight: 3,
+                color: 'white',
+              }}>
               What libraries do I use?
             </Text>
             <Text>➡</Text>
           </View>
         </TouchableOpacity>
+        <SeparatorComponent />
+        <Button
+          title="Rate App"
+          onPress={onRate || onReview}
+          color={rated ? 'pink' : '#000'}
+        />
       </View>
     </ScrollView>
   );

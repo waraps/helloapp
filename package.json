@@ -1,6 +1,6 @@
 {
   "name": "helloapp",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -22,6 +22,7 @@
     "react-native": "0.69.0",
     "react-native-device-info": "^9.0.2",
     "react-native-fast-image": "^8.5.11",
+    "react-native-in-app-review": "^4.1.1",
     "react-native-modal": "^13.0.1",
     "react-native-rate": "^1.2.9",
     "react-native-responsive-screen": "^1.4.2",

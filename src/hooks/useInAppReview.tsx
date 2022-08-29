@@ -1,3 +1,6 @@
+// this hook uses to different libs to test the in-app reviews
+// just pass a boolean value to test the lib you prefer
+
 import {useState} from 'react';
 
 import Rate, {AndroidMarket} from 'react-native-rate';

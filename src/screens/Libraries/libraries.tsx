@@ -20,7 +20,7 @@ export const Libraries = () => {
       <Text style={styles.header}>
         {'Libraries installed to be testing\nin this App'}
       </Text>
-      <Text style={{marginLeft: 8}}>
+      <Text style={{marginLeft: 8, color: 'white'}}>
         Press card for more information about the library
       </Text>
       <TouchableOpacity style={styles.card}>
@@ -73,6 +73,31 @@ export const Libraries = () => {
           FastImage is a wrapper around SDWebImage (iOS) and Glide (Android).
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.card}>
+        <Text
+          style={styles.cardTitle}
+          onPress={() =>
+            openURL('https://github.com/KjellConnelly/react-native-rate')
+          }>
+          react-native-rate
+        </Text>
+        <Text style={styles.cardDescription}>
+          React Native Rate is a cross platform solution to getting users to
+          easily rate your app.
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.card}>
+        <Text
+          style={styles.cardTitle}
+          onPress={() =>
+            openURL('https://github.com/MinaSamir11/react-native-in-app-review')
+          }>
+          react-native-in-app-review
+        </Text>
+        <Text style={styles.cardDescription}>
+          React native in app review, to rate on Play store, App Store.
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -87,6 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     margin: 10,
     textAlign: 'center',
+    color: 'white',
   },
   card: {
     backgroundColor: '#f5f5f5',

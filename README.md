@@ -38,7 +38,7 @@ yarn android
 
 ### In-app-reviews
 
-![In-app-review 1](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-1)
-![In-app-review 2](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-2)
-![In-app-review 3](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-3)
-![In-app-review 4](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-4)
+![In-app-review 1](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-1.png)
+![In-app-review 2](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-2.png)
+![In-app-review 3](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-3.png)
+![In-app-review 4](https://raw.githubusercontent.com/waraps/HelloApp/main/src/assets/images/in-app-review-4.png)

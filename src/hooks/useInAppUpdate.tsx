@@ -37,7 +37,7 @@ export function useInAppUpdate(): IAppUpdateState {
     inAppUpdates
       .checkNeedsUpdate()
       .then((result: NeedsUpdateResponse) => {
-        console.log(result);
+        // console.log(result);
         setState({
           ...state,
           needsUpdate: result.shouldUpdate,

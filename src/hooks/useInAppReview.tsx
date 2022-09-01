@@ -22,7 +22,7 @@ export function useInAppReview(useOnRate = true): IAppReviews {
   const [lastReview, setLastReview] = useState<Date>(new Date('2022-09-01')); // this date should be extracted from storage
 
   const onRate = (): void => {
-    console.log('-- react-native-rate running --');
+    console.warn('-- react-native-rate running --');
 
     try {
       const options: IConfig = {
@@ -75,7 +75,7 @@ export function useInAppReview(useOnRate = true): IAppReviews {
   };
 
   const onReview = async () => {
-    console.log('-- react-native-in-app-review running --');
+    console.warn('-- react-native-in-app-review running --');
 
     try {
       if (lastReview !== null) {

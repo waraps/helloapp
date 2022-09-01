@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, Text, TouchableOpacity, View, Button} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 
 // libs
 import {getVersion} from 'react-native-device-info';
@@ -27,7 +27,7 @@ interface IHomeProps {
 export const Home = ({navigation}: IHomeProps): JSX.Element => {
   const [showUpdateModal, setShowUpdateModal] = useState<boolean>(false);
   const {state, checkForUpdates, startUpdating} = useInAppUpdate();
-  const {onRate, rated, onReview} = useInAppReview(true); // true to run onRate or false to run onReview
+  useInAppReview(true); // true to run react-native-rate lib or false to run react-native-in-app-review lib
 
   const {needsUpdate, statusUpdate} = state;
   const versionApp = getVersion();
@@ -123,12 +123,6 @@ export const Home = ({navigation}: IHomeProps): JSX.Element => {
             <Text>➡</Text>
           </View>
         </TouchableOpacity>
-        <SeparatorComponent />
-        <Button
-          title="Rate App"
-          onPress={onRate || onReview}
-          color={rated ? 'pink' : '#000'}
-        />
       </View>
     </ScrollView>
   );
